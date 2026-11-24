@@ -1,0 +1,16 @@
+{
+  "tieuDe": "Thêm ghi chú phạm vi vai trên form đăng ký đơn hàng (SCR-D4-01, vùng B)",
+  "scope": {
+    "ma": "S1",
+    "nhan": "Một phần một màn",
+    "ghiDe": false
+  },
+  "complexity": {
+    "ma": "C1",
+    "nhan": "CRUD thường",
+    "ghiDe": false
+  },
+  "swp": 1,
+  "gio": 4,
+  "lyDo": "Scope = S1 (Một phần một màn).\n  → Khớp từ khoá: một phần, một trường, một dòng, hiển thị thêm.\n  → Đối chiếu ví dụ LAB-4: SCR-D4-01 vùng B-5 'Ghi chú phạm vi vai' — thêm một dòng ghi chú tĩnh trên form đã có, không đổi API-ORD-01/API-ALC-01.\nComplexity = C1 (CRUD thường).\n  → Khớp từ khoá: crud, validate cơ bản.\n  → Đối chiếu ví dụ LAB-4: SCR-D4-01 B-0..B-3 — chọn khách hàng, chọn SKU, nhập số lượng, nhập ngày giao mong muốn: bốn trường input + validate required/min, không có rule loại trừ nào ở bước nhập.\nTra ma trận ô (S1 × C1) → SWP = 1.\nQuy đổi giờ: 1 SWP × 4 giờ/SWP = 4 giờ."
+}

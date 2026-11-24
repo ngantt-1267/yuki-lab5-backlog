@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Báo cáo chấm SWP — LAB-5 backlog YUKI SYSTEM</title>
+<style>
+  body { font-family: "Segoe UI", system-ui, sans-serif; max-width: 920px; margin: 32px auto;
+         padding: 0 16px; color: #1a1a1a; background: #fafafa; }
+  h1 { font-size: 1.5rem; } h2 { margin-top: 2.5rem; border-bottom: 2px solid #ddd; padding-bottom: .3rem; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #ccc; padding: 8px 10px; text-align: center; font-size: .92rem; }
+  th { background: #eef2f7; }
+  .issue { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px 20px; margin: 1rem 0; }
+  .diem { margin: .5rem 0 1rem; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .85rem;
+           margin-right: 6px; color: #fff; }
+  .badge.scope { background: #2563eb; } .badge.complexity { background: #7c3aed; }
+  .badge.swp { background: #059669; font-weight: 600; } .badge.gio { background: #475569; }
+  pre.ly-do { white-space: pre-wrap; background: #f6f6f6; border: 1px solid #e5e5e5; border-radius: 6px;
+              padding: 12px 14px; font-size: .88rem; line-height: 1.5; }
+  code { background: #eee; padding: 1px 5px; border-radius: 4px; }
+  footer { margin-top: 3rem; font-size: .8rem; color: #777; }
+</style>
+</head>
+<body>
+  <h1>Báo cáo chấm SWP — LAB-5 backlog YUKI SYSTEM</h1>
+  <p>Sinh bởi skill <code>skills/cham-swp</code>. Quy tắc tất định: cùng một issue chấm lại
+     nhiều lần vẫn ra đúng cùng một kết quả — không có bước ngẫu nhiên hay gọi LLM trong vòng
+     chấm điểm, chỉ khớp từ khoá và tra bảng cố định.</p>
+
+  <h2>Ma trận Scope × Complexity → SWP</h2>
+  <p>Dãy Fibonacci Agile (1-2-3-5-8), xếp theo đường chéo tăng dần cả hai trục. Trần 8 — không
+     dùng 13 — vì độ hạt issue của backlog này đã chốt là <b>thô</b> (1 issue/khu màn); một issue
+     ước ra 13+ là dấu hiệu phải tách nhỏ, không phải chấm 13.</p>
+  <table><thead><tr><th>Scope \ Complexity</th><th>C1 — CRUD thường</th><th>C2 — Có rule nghiệp vụ nhiều bước</th><th>C3 — Có ràng buộc ngoài hệ thống</th></tr></thead><tbody><tr><th>S1 — Một phần một màn</th><td>1 SWP<br><small>4 giờ</small></td><td>2 SWP<br><small>8 giờ</small></td><td>3 SWP<br><small>12 giờ</small></td></tr><tr><th>S2 — Trọn một màn hoặc một luồng ghi</th><td>2 SWP<br><small>8 giờ</small></td><td>3 SWP<br><small>12 giờ</small></td><td>5 SWP<br><small>20 giờ</small></td></tr><tr><th>S3 — Nhiều màn hoặc tầng kiến trúc</th><td>3 SWP<br><small>12 giờ</small></td><td>5 SWP<br><small>20 giờ</small></td><td>8 SWP<br><small>32 giờ</small></td></tr></tbody></table>
+  <p>Quy đổi giờ: <b>1 SWP = 4 giờ</b> (hệ số cố định, áp dụng như nhau cho
+     mọi epic — xem lý do đầy đủ trong <code>ma-tran-diem.js</code>).</p>
+
+  <h2>Kết quả chấm 2 issue mẫu (hai đầu thang điểm)</h2>
+  
+  <section class="issue">
+    <h3>Thêm ghi chú phạm vi vai trên form đăng ký đơn hàng (SCR-D4-01, vùng B)</h3>
+    <div class="diem">
+      <span class="badge scope">S1 · Một phần một màn</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 1</span>
+      <span class="badge gio">4 giờ</span>
+    </div>
+    <pre class="ly-do">Scope = S1 (Một phần một màn).
+  → Khớp từ khoá: một phần, một trường, một dòng, hiển thị thêm.
+  → Đối chiếu ví dụ LAB-4: SCR-D4-01 vùng B-5 'Ghi chú phạm vi vai' — thêm một dòng ghi chú tĩnh trên form đã có, không đổi API-ORD-01/API-ALC-01.
+Complexity = C1 (CRUD thường).
+  → Khớp từ khoá: crud, validate cơ bản.
+  → Đối chiếu ví dụ LAB-4: SCR-D4-01 B-0..B-3 — chọn khách hàng, chọn SKU, nhập số lượng, nhập ngày giao mong muốn: bốn trường input + validate required/min, không có rule loại trừ nào ở bước nhập.
+Tra ma trận ô (S1 × C1) → SWP = 1.
+Quy đổi giờ: 1 SWP × 4 giờ/SWP = 4 giờ.</pre>
+  </section>
+  
+  <section class="issue">
+    <h3>Kiểm giới hạn giờ lái xe trước khi công bố tuyến (FR-SCH-02)</h3>
+    <div class="diem">
+      <span class="badge scope">S3 · Nhiều màn hoặc tầng kiến trúc</span>
+      <span class="badge complexity">C3 · Có ràng buộc ngoài hệ thống</span>
+      <span class="badge swp">SWP = 8</span>
+      <span class="badge gio">32 giờ</span>
+    </div>
+    <pre class="ly-do">Scope = S3 (Nhiều màn hoặc tầng kiến trúc).
+  → Khớp từ khoá: nhiều màn, tầng kiến trúc, thêm cột, rule_version.
+  → Đối chiếu ví dụ LAB-4: FR-SCH-02 giới hạn giờ lái xe — RFP tr.34 ghi rõ route cần cột rule_version mới, luật này ràng buộc cả /routes lẫn cách khoá phiên bản tuyến, không nằm gọn trong một màn.
+Complexity = C3 (Có ràng buộc ngoài hệ thống).
+  → Khớp từ khoá: giờ lái xe, pháp lý, dịch vụ bản đồ, fr-sch-02, if-map-01, chưa có thiết kế.
+  → Đối chiếu ví dụ LAB-4: FR-SCH-02 kiểm giới hạn giờ lái xe (trần pháp lý năm/tháng/ngày/tuần, RFP tr.34) và IF-MAP-01 nối dịch vụ bản đồ ngoài (ước lượng quá 24 giờ thì cấm công bố, RFP tr.56).
+Tra ma trận ô (S3 × C3) → SWP = 8.
+Quy đổi giờ: 8 SWP × 4 giờ/SWP = 32 giờ.</pre>
+  </section>
+
+  <h2>Ghi lên GitHub Project</h2>
+  <p>Script <code>ghi-len-github-project.js</code> ghi SWP/giờ lên field kiểu <b>NUMBER</b> của
+     GitHub Project qua <code>gh project item-edit --field "&lt;tên field&gt;" --number &lt;giá trị&gt;</code>
+     (đã xác minh thật bằng <code>gh project item-edit --help</code>, gh v2.101.0). Field
+     <b>Iteration</b> không tạo được qua CLI/GraphQL — PL tạo tay một lần qua giao diện web, script
+     này không đụng tới field đó.</p>
+
+  <footer>Sinh tự động — xem mã nguồn trong <code>skills/cham-swp/</code>.</footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "cham-swp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skill cham diem SWP (Scope x Complexity) cho backlog LAB-5 cua YUKI SYSTEM",
+  "type": "commonjs",
+  "main": "cham-diem.js",
+  "bin": {
+    "cham-swp": "./cham-diem.js"
+  },
+  "scripts": {
+    "cham-vi-du": "node cham-diem.js --file vi-du-issue/vi-du-01-scr-d4-01-them-truong-ghi-chu.md && node cham-diem.js --file vi-du-issue/vi-du-02-fr-sch-02-gio-lai-xe.md",
+    "bao-cao": "node sinh-bao-cao-html.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
