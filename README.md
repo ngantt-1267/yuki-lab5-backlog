@@ -1,6 +1,6 @@
 # YUKI SYSTEM — LAB-5 Backlog
 
-**Mã học viên:** [CẦN PL ĐIỀN: mã học viên]
+**Tên học viên:** nguyen.thi.thuy.nga (cev2)
 **Đề:** Product B — Hệ thống quản lý chuỗi kho lạnh thực phẩm (YUKI SYSTEM)
 
 Backlog LAB-5 (GitHub Project, task breakdown, estimate, progress report) phá từ bản thiết kế
