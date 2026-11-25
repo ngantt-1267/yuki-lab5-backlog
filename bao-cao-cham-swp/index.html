@@ -2,84 +2,347 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>Báo cáo chấm SWP — LAB-5 backlog YUKI SYSTEM</title>
+<title>Báo cáo chấm SWP — LAB-5 backlog YUKI SYSTEM (24 issue thật)</title>
 <style>
-  body { font-family: "Segoe UI", system-ui, sans-serif; max-width: 920px; margin: 32px auto;
+  body { font-family: "Segoe UI", system-ui, sans-serif; max-width: 980px; margin: 32px auto;
          padding: 0 16px; color: #1a1a1a; background: #fafafa; }
   h1 { font-size: 1.5rem; } h2 { margin-top: 2.5rem; border-bottom: 2px solid #ddd; padding-bottom: .3rem; }
   table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
   th, td { border: 1px solid #ccc; padding: 8px 10px; text-align: center; font-size: .92rem; }
   th { background: #eef2f7; }
-  .issue { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px 20px; margin: 1rem 0; }
-  .diem { margin: .5rem 0 1rem; }
-  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .85rem;
+  .issue { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px; margin: .8rem 0; }
+  .issue h4 { margin: 0 0 .4rem; font-size: 1rem; }
+  .diem { margin: .4rem 0 .6rem; }
+  .url a { font-size: .82rem; color: #475569; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .82rem;
            margin-right: 6px; color: #fff; }
   .badge.scope { background: #2563eb; } .badge.complexity { background: #7c3aed; }
   .badge.swp { background: #059669; font-weight: 600; } .badge.gio { background: #475569; }
+  .badge.override { background: #dc2626; } .badge.keep { background: #64748b; }
   pre.ly-do { white-space: pre-wrap; background: #f6f6f6; border: 1px solid #e5e5e5; border-radius: 6px;
-              padding: 12px 14px; font-size: .88rem; line-height: 1.5; }
+              padding: 10px 12px; font-size: .86rem; line-height: 1.5; margin: 0; }
   code { background: #eee; padding: 1px 5px; border-radius: 4px; }
   footer { margin-top: 3rem; font-size: .8rem; color: #777; }
 </style>
 </head>
 <body>
-  <h1>Báo cáo chấm SWP — LAB-5 backlog YUKI SYSTEM</h1>
-  <p>Sinh bởi skill <code>skills/cham-swp</code>. Quy tắc tất định: cùng một issue chấm lại
-     nhiều lần vẫn ra đúng cùng một kết quả — không có bước ngẫu nhiên hay gọi LLM trong vòng
-     chấm điểm, chỉ khớp từ khoá và tra bảng cố định.</p>
+  <h1>Báo cáo chấm SWP — LAB-5 backlog YUKI SYSTEM (24 issue thật trên Project)</h1>
+  <p>Sinh bởi skill <code>skills/cham-swp</code>, chạy trực tiếp trên 24 issue thật của
+     <code>github.com/ngantt-1267/yuki-lab5-backlog</code> (Project #1). Quy tắc tất định: khớp từ
+     khoá + tra bảng cố định, không gọi LLM ở bước chấm. Hai issue (X.1, X.2) và bảy issue Epic
+     được PL xem lại và ghi đè có lý do — xem khối từng issue bên dưới.</p>
 
   <h2>Ma trận Scope × Complexity → SWP</h2>
-  <p>Dãy Fibonacci Agile (1-2-3-5-8), xếp theo đường chéo tăng dần cả hai trục. Trần 8 — không
-     dùng 13 — vì độ hạt issue của backlog này đã chốt là <b>thô</b> (1 issue/khu màn); một issue
-     ước ra 13+ là dấu hiệu phải tách nhỏ, không phải chấm 13.</p>
   <table><thead><tr><th>Scope \ Complexity</th><th>C1 — CRUD thường</th><th>C2 — Có rule nghiệp vụ nhiều bước</th><th>C3 — Có ràng buộc ngoài hệ thống</th></tr></thead><tbody><tr><th>S1 — Một phần một màn</th><td>1 SWP<br><small>4 giờ</small></td><td>2 SWP<br><small>8 giờ</small></td><td>3 SWP<br><small>12 giờ</small></td></tr><tr><th>S2 — Trọn một màn hoặc một luồng ghi</th><td>2 SWP<br><small>8 giờ</small></td><td>3 SWP<br><small>12 giờ</small></td><td>5 SWP<br><small>20 giờ</small></td></tr><tr><th>S3 — Nhiều màn hoặc tầng kiến trúc</th><td>3 SWP<br><small>12 giờ</small></td><td>5 SWP<br><small>20 giờ</small></td><td>8 SWP<br><small>32 giờ</small></td></tr></tbody></table>
-  <p>Quy đổi giờ: <b>1 SWP = 4 giờ</b> (hệ số cố định, áp dụng như nhau cho
-     mọi epic — xem lý do đầy đủ trong <code>ma-tran-diem.js</code>).</p>
+  <p>Quy đổi giờ: <b>1 SWP = 4 giờ</b> (hệ số cố định, áp dụng như nhau cho mọi epic).</p>
 
-  <h2>Kết quả chấm 2 issue mẫu (hai đầu thang điểm)</h2>
+  <h2>Tổng theo epic (issue con — không cộng điểm issue Epic, tránh đếm trùng)</h2>
+  <table><thead><tr><th>Epic</th><th>Số issue</th><th>Tổng SWP</th><th>Tổng giờ</th></tr></thead><tbody>
+  <tr><td>Epic 1 — SCR-D1-02 入荷検品・受入登録</td><td>3</td><td>7</td><td>28</td></tr>
+  <tr><td>Epic 2 — SCR-D1-03 隔離品一覧・処分判定</td><td>1</td><td>3</td><td>12</td></tr>
+  <tr><td>Epic 3 — SCR-D4-01 受注登録・引当</td><td>2</td><td>5</td><td>20</td></tr>
+  <tr><td>Epic 4 — SCR-D4-03 ピッキング・積込検証</td><td>2</td><td>5</td><td>20</td></tr>
+  <tr><td>Epic 5 — SCR-D4-05 配送確認（POD）</td><td>2</td><td>8</td><td>32</td></tr>
+  <tr><td>Epic 6 — SCR-D5-01 ルート計画・公開</td><td>3</td><td>10</td><td>40</td></tr>
+  <tr><td>Epic 7 — FR-SCH-02 Giới hạn giờ lái xe</td><td>1</td><td>8</td><td>32</td></tr>
+  <tr><td>Cross-epic (X.1/X.2/X.3)</td><td>3</td><td>14</td><td>56</td></tr>
+  <tr style="font-weight:700"><td>TỔNG</td><td>17</td><td>60</td><td>240</td></tr>
+</tbody></table>
+
+  <h2>Chi tiết 24 issue (7 epic + 17 issue con)</h2>
   
   <section class="issue">
-    <h3>Thêm ghi chú phạm vi vai trên form đăng ký đơn hàng (SCR-D4-01, vùng B)</h3>
+    <h4>#1 — [Epic] SCR-D1-02 入荷検品・受入登録 (Nhập kiểm phẩm, nhập hàng) <span class="badge override">PL ghi đè</span></h4>
     <div class="diem">
-      <span class="badge scope">S1 · Một phần một màn</span>
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
       <span class="badge complexity">C1 · CRUD thường</span>
-      <span class="badge swp">SWP = 1</span>
-      <span class="badge gio">4 giờ</span>
+      <span class="badge swp">SWP = 0</span>
+      <span class="badge gio">0 giờ</span>
     </div>
-    <pre class="ly-do">Scope = S1 (Một phần một màn).
-  → Khớp từ khoá: một phần, một trường, một dòng, hiển thị thêm.
-  → Đối chiếu ví dụ LAB-4: SCR-D4-01 vùng B-5 'Ghi chú phạm vi vai' — thêm một dòng ghi chú tĩnh trên form đã có, không đổi API-ORD-01/API-ALC-01.
-Complexity = C1 (CRUD thường).
-  → Khớp từ khoá: crud, validate cơ bản.
-  → Đối chiếu ví dụ LAB-4: SCR-D4-01 B-0..B-3 — chọn khách hàng, chọn SKU, nhập số lượng, nhập ngày giao mong muốn: bốn trường input + validate required/min, không có rule loại trừ nào ở bước nhập.
-Tra ma trận ô (S1 × C1) → SWP = 1.
-Quy đổi giờ: 1 SWP × 4 giờ/SWP = 4 giờ.</pre>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/1">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/1</a></p>
+    <pre class="ly-do">PL ghi đè Point=0, Giờ=0: issue này là EPIC (issue cha gom nhóm issue con qua quan hệ sub-issue), không phải một đơn vị thi công độc lập. Công sức thật đã nằm trong các issue con của epic — giữ điểm skill chấm tự động trên chính epic (ra từ mô tả ngắn gọn của epic) sẽ cộng trùng công việc đã tính ở issue con khi gộp bảng tổng Phần 4. Quy tắc áp dụng như nhau cho cả 7 epic, không ngoại lệ.</pre>
   </section>
-  
+
   <section class="issue">
-    <h3>Kiểm giới hạn giờ lái xe trước khi công bố tuyến (FR-SCH-02)</h3>
+    <h4>#2 — [Epic] SCR-D1-03 隔離品一覧・処分判定 (Cách ly và phán quyết) <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 0</span>
+      <span class="badge gio">0 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/2">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/2</a></p>
+    <pre class="ly-do">PL ghi đè Point=0, Giờ=0: issue này là EPIC (issue cha gom nhóm issue con qua quan hệ sub-issue), không phải một đơn vị thi công độc lập. Công sức thật đã nằm trong các issue con của epic — giữ điểm skill chấm tự động trên chính epic (ra từ mô tả ngắn gọn của epic) sẽ cộng trùng công việc đã tính ở issue con khi gộp bảng tổng Phần 4. Quy tắc áp dụng như nhau cho cả 7 epic, không ngoại lệ.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#3 — [Epic] SCR-D4-01 受注登録・引当 (Đặt hàng và phân bổ) <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 0</span>
+      <span class="badge gio">0 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/3">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/3</a></p>
+    <pre class="ly-do">PL ghi đè Point=0, Giờ=0: issue này là EPIC (issue cha gom nhóm issue con qua quan hệ sub-issue), không phải một đơn vị thi công độc lập. Công sức thật đã nằm trong các issue con của epic — giữ điểm skill chấm tự động trên chính epic (ra từ mô tả ngắn gọn của epic) sẽ cộng trùng công việc đã tính ở issue con khi gộp bảng tổng Phần 4. Quy tắc áp dụng như nhau cho cả 7 epic, không ngoại lệ.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#4 — [Epic] SCR-D4-03 ピッキング・積込検証 (Xếp hàng và kiểm chứng) <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 0</span>
+      <span class="badge gio">0 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/4">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/4</a></p>
+    <pre class="ly-do">PL ghi đè Point=0, Giờ=0: issue này là EPIC (issue cha gom nhóm issue con qua quan hệ sub-issue), không phải một đơn vị thi công độc lập. Công sức thật đã nằm trong các issue con của epic — giữ điểm skill chấm tự động trên chính epic (ra từ mô tả ngắn gọn của epic) sẽ cộng trùng công việc đã tính ở issue con khi gộp bảng tổng Phần 4. Quy tắc áp dụng như nhau cho cả 7 epic, không ngoại lệ.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#5 — [Epic] SCR-D4-05 配送確認（POD） (Xác nhận giao hàng) <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 0</span>
+      <span class="badge gio">0 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/5">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/5</a></p>
+    <pre class="ly-do">PL ghi đè Point=0, Giờ=0: issue này là EPIC (issue cha gom nhóm issue con qua quan hệ sub-issue), không phải một đơn vị thi công độc lập. Công sức thật đã nằm trong các issue con của epic — giữ điểm skill chấm tự động trên chính epic (ra từ mô tả ngắn gọn của epic) sẽ cộng trùng công việc đã tính ở issue con khi gộp bảng tổng Phần 4. Quy tắc áp dụng như nhau cho cả 7 epic, không ngoại lệ.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#6 — [Epic] SCR-D5-01 ルート計画・公開 (Lập tuyến và công bố) <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 0</span>
+      <span class="badge gio">0 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/6">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/6</a></p>
+    <pre class="ly-do">PL ghi đè Point=0, Giờ=0: issue này là EPIC (issue cha gom nhóm issue con qua quan hệ sub-issue), không phải một đơn vị thi công độc lập. Công sức thật đã nằm trong các issue con của epic — giữ điểm skill chấm tự động trên chính epic (ra từ mô tả ngắn gọn của epic) sẽ cộng trùng công việc đã tính ở issue con khi gộp bảng tổng Phần 4. Quy tắc áp dụng như nhau cho cả 7 epic, không ngoại lệ.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#7 — [Epic] FR-SCH-02 Giới hạn giờ lái xe (ràng buộc kiến trúc riêng) <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C3 · Có ràng buộc ngoài hệ thống</span>
+      <span class="badge swp">SWP = 0</span>
+      <span class="badge gio">0 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/7">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/7</a></p>
+    <pre class="ly-do">PL ghi đè Point=0, Giờ=0: issue này là EPIC (issue cha gom nhóm issue con qua quan hệ sub-issue), không phải một đơn vị thi công độc lập. Công sức thật đã nằm trong các issue con của epic — giữ điểm skill chấm tự động trên chính epic (ra từ mô tả ngắn gọn của epic) sẽ cộng trùng công việc đã tính ở issue con khi gộp bảng tổng Phần 4. Quy tắc áp dụng như nhau cho cả 7 epic, không ngoại lệ.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#8 — 1.1 Ghi nhận kiểm hàng nhập — ba loại số lượng, cách ly tự động theo nhiệt độ, ảnh kiểm phẩm thật <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 3</span>
+      <span class="badge gio">12 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/8">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/8</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#9 — 1.2 Đăng ký lịch hẹn nhập hàng mới (nút B-8 + overlay H) — gộp phần tạo mới của SCR-D1-01 <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 2</span>
+      <span class="badge gio">8 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/9">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/9</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#10 — 1.3 SCR-D1-01 — sửa/huỷ lịch hẹn nhập hàng + lọc theo ngày và nhà cung cấp <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 2</span>
+      <span class="badge gio">8 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/10">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/10</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#11 — 2.1 Danh sách tồn kho cách ly + phán quyết giải phóng/huỷ (lý do bắt buộc) + lịch sử phán quyết <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 3</span>
+      <span class="badge gio">12 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/11">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/11</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#12 — 3.1 Đăng ký đơn hàng + phân bổ tồn kho theo đúng 6 bước loại trừ (FEFO/FIFO) + ghi bằng chứng từng lô bị loại <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 3</span>
+      <span class="badge gio">12 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/12">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/12</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#13 — 3.2 Hiển thị đơn gần đây + nhật ký loại trừ gần đây, gồm xem chi tiết căn cứ loại trừ (allocation_block.detail) <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 2</span>
+      <span class="badge gio">8 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/13">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/13</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#14 — 4.1 Kiểm xếp hàng — hai cửa chặn nhiệt độ, niêm phong, lịch sử kiểm (kể cả lần bị chặn) <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 3</span>
+      <span class="badge gio">12 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/14">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/14</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#15 — 4.2 Quét mã vạch khi kiểm xếp hàng, thay nhập tay (SKU/lô/số lượng đối chiếu chéo) <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 2</span>
+      <span class="badge gio">8 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/15">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/15</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#16 — 5.1 Ghi nhận kết quả giao — phân nhánh 車上渡し/軒先渡し, bốn khoá bằng chứng POD thật, chỉ ghi lịch sử khi giao đạt <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 3</span>
+      <span class="badge gio">12 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/16">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/16</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#17 — 5.2 Hàng đợi bằng chứng giao hàng ngoại tuyến tối đa 8 giờ, mã hoá <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C3 · Có ràng buộc ngoài hệ thống</span>
+      <span class="badge swp">SWP = 5</span>
+      <span class="badge gio">20 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/17">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/17</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#18 — 6.1 Form công bố tuyến — quản phiên bản (không ghi đè), chặn trùng đơn/lệch nhiệt/chưa phân bổ, sơ đồ thứ tự giao <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 3</span>
+      <span class="badge gio">12 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/18">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/18</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#19 — 6.2 Nối dịch vụ bản đồ (IF-MAP-01) — tính quãng đường/thời gian theo batch, cache, timeout, cấm công bố nếu ước lượng &gt; 24 giờ <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C3 · Có ràng buộc ngoài hệ thống</span>
+      <span class="badge swp">SWP = 5</span>
+      <span class="badge gio">20 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/19">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/19</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#20 — 6.3 Hiện lý do đơn chưa được gán tuyến (cột 拒否理由, vùng E) <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S2 · Trọn một màn hoặc một luồng ghi</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 2</span>
+      <span class="badge gio">8 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/20">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/20</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#21 — 7.1 Mô hình rule_version cho tuyến + kiểm trần giờ lái xe + chèn điểm nghỉ + cấm công bố khi vi phạm + hiện đúng khoảng giờ vi phạm <span class="badge keep">Giữ nguyên</span></h4>
     <div class="diem">
       <span class="badge scope">S3 · Nhiều màn hoặc tầng kiến trúc</span>
       <span class="badge complexity">C3 · Có ràng buộc ngoài hệ thống</span>
       <span class="badge swp">SWP = 8</span>
       <span class="badge gio">32 giờ</span>
     </div>
-    <pre class="ly-do">Scope = S3 (Nhiều màn hoặc tầng kiến trúc).
-  → Khớp từ khoá: nhiều màn, tầng kiến trúc, thêm cột, rule_version.
-  → Đối chiếu ví dụ LAB-4: FR-SCH-02 giới hạn giờ lái xe — RFP tr.34 ghi rõ route cần cột rule_version mới, luật này ràng buộc cả /routes lẫn cách khoá phiên bản tuyến, không nằm gọn trong một màn.
-Complexity = C3 (Có ràng buộc ngoài hệ thống).
-  → Khớp từ khoá: giờ lái xe, pháp lý, dịch vụ bản đồ, fr-sch-02, if-map-01, chưa có thiết kế.
-  → Đối chiếu ví dụ LAB-4: FR-SCH-02 kiểm giới hạn giờ lái xe (trần pháp lý năm/tháng/ngày/tuần, RFP tr.34) và IF-MAP-01 nối dịch vụ bản đồ ngoài (ước lượng quá 24 giờ thì cấm công bố, RFP tr.56).
-Tra ma trận ô (S3 × C3) → SWP = 8.
-Quy đổi giờ: 8 SWP × 4 giờ/SWP = 32 giờ.</pre>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/21">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/21</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#22 — X.1 Áp RBAC thật theo ma trận phân quyền + phân tách dữ liệu theo kho/khu vực (dùng chung 6 màn cốt lõi) <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S3 · Nhiều màn hoặc tầng kiến trúc</span>
+      <span class="badge complexity">C3 · Có ràng buộc ngoài hệ thống</span>
+      <span class="badge swp">SWP = 8</span>
+      <span class="badge gio">32 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/22">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/22</a></p>
+    <pre class="ly-do">PL nâng Scope S2→S3: tiêu đề + nội dung nêu rõ RBAC và phân tách dữ liệu kho/khu vực dùng CHUNG cả 6 màn cốt lõi — từ khoá tự động không bắt được cụm "dùng chung 6 màn" vì thiếu đúng chuỗi khớp. Nâng Complexity C1→C3: phân tách theo kho/khu vực đòi mô hình dữ liệu MỚI chưa tồn tại (hiện chỉ có RBAC theo vai trò), đúng định nghĩa C3, và bị chặn bởi Q&amp;A No.33/34 (RFP) chưa trả lời.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#23 — X.2 Gộp giao dịch nguyên tử cho ba luồng ghi hai bước + bổ sung chống gửi lại cho SCR-D4-01 <span class="badge override">PL ghi đè</span></h4>
+    <div class="diem">
+      <span class="badge scope">S3 · Nhiều màn hoặc tầng kiến trúc</span>
+      <span class="badge complexity">C2 · Có rule nghiệp vụ nhiều bước</span>
+      <span class="badge swp">SWP = 5</span>
+      <span class="badge gio">20 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/23">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/23</a></p>
+    <pre class="ly-do">PL nâng Scope S2→S3: ảnh hưởng BA màn (SCR-D1-03/SCR-D4-01/SCR-D4-03) dùng chung một loại rủi ro giao dịch hai bước không nguyên tử — từ khoá tự động chỉ bắt "luồng ghi" (S2), không đếm được số màn liên quan. Complexity giữ C2 (không phải C1 CRUD, cũng không phải C3 ràng buộc ngoài hệ thống): đây là một quy trình kỹ thuật nhiều bước (bọc transaction + idempotency key) trên dữ liệu đã có sẵn trong hệ thống.</pre>
+  </section>
+
+  <section class="issue">
+    <h4>#24 — X.3 Sinh hai inventory_unit + hai dòng inventory_status_history khi một dòng kiểm vừa có nhận vừa có tạm giữ (số lượng 保留) <span class="badge keep">Giữ nguyên</span></h4>
+    <div class="diem">
+      <span class="badge scope">S1 · Một phần một màn</span>
+      <span class="badge complexity">C1 · CRUD thường</span>
+      <span class="badge swp">SWP = 1</span>
+      <span class="badge gio">4 giờ</span>
+    </div>
+    <p class="url"><a href="https://github.com/ngantt-1267/yuki-lab5-backlog/issues/24">https://github.com/ngantt-1267/yuki-lab5-backlog/issues/24</a></p>
+    <pre class="ly-do">Giữ nguyên điểm skill chấm — khớp quan sát thật từ LAB-4, không cần điều chỉnh.</pre>
   </section>
 
   <h2>Ghi lên GitHub Project</h2>
-  <p>Script <code>ghi-len-github-project.js</code> ghi SWP/giờ lên field kiểu <b>NUMBER</b> của
-     GitHub Project qua <code>gh project item-edit --field "&lt;tên field&gt;" --number &lt;giá trị&gt;</code>
-     (đã xác minh thật bằng <code>gh project item-edit --help</code>, gh v2.101.0). Field
-     <b>Iteration</b> không tạo được qua CLI/GraphQL — PL tạo tay một lần qua giao diện web, script
-     này không đụng tới field đó.</p>
+  <p>Field <b>Point (SWP)</b> và <b>Giờ ước lượng</b> (kiểu NUMBER) được ghi qua
+     <code>gh project item-edit 1 --owner ngantt-1267 --url &lt;issue-url&gt; --field "&lt;tên field&gt;" --number &lt;giá trị&gt;</code>
+     cho toàn bộ 24 issue.</p>
 
   <footer>Sinh tự động — xem mã nguồn trong <code>skills/cham-swp/</code>.</footer>
 </body>
