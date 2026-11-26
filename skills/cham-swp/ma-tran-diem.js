@@ -24,8 +24,8 @@ const SCOPE_LEVELS = {
       "Dựng/sửa trọn một màn (mọi vùng A-F), hoặc trọn một luồng ghi xuyên suốt (form → API → " +
       "phản hồi) — nhưng không lan sang màn khác hay tầng kiến trúc chung.",
     viDuThat:
-      "SCR-D1-02 入荷検品・受入登録 — trọn luồng B4 nhập lịch hẹn + kiểm từng dòng hàng + ghi " +
-      "3 loại số lượng, nằm gọn trong một trang /inbound.",
+      "SCR-D1-02 入荷検品・受入登録 — trọn luồng B-8/overlay H đăng ký lịch hẹn mới + kiểm từng " +
+      "dòng hàng + ghi 3 loại số lượng, nằm gọn trong một trang /inbound.",
   },
   S3: {
     ma: "S3",
