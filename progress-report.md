@@ -1,114 +1,144 @@
-# Progress Report — Iteration 1 (giả lập)
+# Progress Report — Milestone & Sprint Plan (giả lập)
 
-**Iteration:** Iteration 1
-**Khoảng thời gian giả lập:** 2026-11-25 → 2026-12-01 (7 ngày)
-**Ngày "hôm nay" trong kịch bản:** 2026-11-28 (ngày thứ 4/7, giữa sprint)
-**Nguồn dữ liệu:** `gh project item-list 1 --owner "@me" --format json --limit 50` (Project v2 #1,
-repo `ngantt-1267/yuki-lab5-backlog`), đọc ngày 2026-11-25. Toàn bộ 24 issue (7 epic + 17 issue
-con/cross-epic) đã được gán vào Iteration 1 — đây là sprint giả lập duy nhất đang chạy.
-
----
-
-## 1. Tổng quan Iteration
-
-| Mục | Giá trị |
-|---|---|
-| Tên Iteration | Iteration 1 |
-| Bắt đầu | 2026-11-25 |
-| Kết thúc | 2026-12-01 (7 ngày) |
-| Tổng số issue trong Iteration | 24 (7 epic + 17 issue con/cross-epic) |
-| Tổng SWP có hiệu lực (loại trừ 7 epic, xem ghi chú) | 60 SWP / 240 giờ |
-
----
-
-## 2. Trạng thái
-
-> **Ghi chú quan trọng:** 7 issue Epic (`#1`–`#7`) mang **Point (SWP) = 0 / Giờ ước lượng = 0**
-> theo quyết định đã chốt ở Phase 5 (`estimate.md` Phần 2) — Epic là issue cha gom nhóm qua quan hệ
-> sub-issue thật của GitHub, không phải đơn vị thi công độc lập; cộng điểm trên cả Epic lẫn issue
-> con sẽ **đếm trùng** công việc. Bảng dưới tách riêng cột Epic để không gây hiểu lầm rằng Epic
-> "không có việc gì" — công sức thật của Epic nằm trọn trong các issue con cùng tên đã liệt ở cột
-> bên.
-
-| Trạng thái | Số issue (tổng) | — trong đó Epic (SWP=0) | — trong đó issue con/cross-epic | Tổng SWP (chỉ tính issue con/cross-epic) | Ghi chú |
-|---|---|---|---|---|---|
-| Done | 6 | 1 (`#2`) | 5 (`#8,#9,#11,#14,#18`) | 14 | Done gồm cả màn Cách ly (`#2`→`#11`), 2 issue của màn Nhập kiểm phẩm, 1 issue Kiểm xếp hàng, 1 issue Form công bố tuyến |
-| In Progress | 8 | 5 (`#1,#3,#4,#5,#6`) | 3 (`#12,#16,#23`) | 11 | 5/6 Epic màn đang "In Progress" vì ít nhất 1 issue con của chúng đang chạy hoặc đã Done một phần; issue con thật đang chạy: 3.1 phân bổ đơn hàng, 5.1 ghi nhận giao hàng, X.2 giao dịch nguyên tử |
-| Todo | 10 | 1 (`#7`) | 9 (`#10,#13,#15,#17,#19,#20,#21,#22,#24`) | 35 | Xem Phần 3 — 8/9 issue con ở Todo bị chặn bởi Q&A/ADR chưa trả lời, không phải do thiếu năng lực đội |
-| **Tổng** | **24** | **7 (0 SWP)** | **17** | **60** | Khớp tổng SWP/giờ đã tính ở `estimate.md` Phần 4 (60 SWP / 240 giờ) |
+> **Đổi cấu trúc so với bản trước:** bản đầu nhét toàn bộ 17 issue thật (24 kể cả epic) vào
+> **một** sprint 7 ngày duy nhất ("Iteration 1") — PL phản hồi đúng: khối lượng việc có nhiều
+> phụ thuộc chờ khách trả lời kéo dài nhiều tuần thì không gọn trong 1 sprint ngắn được. Cấu
+> trúc mới:
+>
+> - **8 Milestone** = 8 cụm chức năng (khớp 7 Epic `#1`–`#7` sẵn có + 1 nhóm cross-epic) — mỗi
+>   Milestone là một khối việc theo màn/ràng buộc, có hạn (`due date`) riêng, có thể kéo dài
+>   xuyên nhiều Sprint.
+> - **3 Sprint** = 3 `Iteration` đã cấu hình sẵn trên field `Iteration` của Project (`gh api
+>   graphql` xác nhận field đã có sẵn 3 kỳ 7 ngày: Iteration 1 (2026-11-25→12-01), Iteration 2
+>   (12-02→12-08), Iteration 3 (12-09→12-15) — không phải tự tạo thêm) — dùng làm nhịp lặp
+>   chung cho mọi Milestone. Mỗi sprint chỉ làm **một phần** của từng cụm chức năng, ưu tiên
+>   phần không bị chặn trước, đẩy phần phụ thuộc khách/ADR chưa có ra sprint sau.
+> - Đã gán thật trên GitHub: 8 Milestone tạo bằng `gh api repos/.../milestones`, toàn bộ 24
+>   issue gán `--milestone` + field `Iteration` bằng `gh project item-edit --iteration-id`
+>   (đọc lại bằng `gh project item-list 1 --owner "@me"` ngày 2026-11-26 để xác nhận đã ghi
+>   đúng, không suy đoán).
 
 ---
 
-## 3. Burndown (bảng ngày × SWP còn lại)
+## 1. Milestone overview — 8 cụm chức năng
 
-Project không có sẵn view Insights/burndown cho repo này (plan tự do, không phải tổ chức trả phí) —
-dùng bảng thay thế theo đúng cho phép của đề bài. Đơn vị: SWP còn lại trong 60 SWP có hiệu lực
-(17 issue con/cross-epic; 7 Epic không tính vì SWP=0, xem Phần 2).
-
-| Ngày | Lý tưởng (SWP còn lại) | Thực tế/dự kiến (SWP còn lại) | Issue hoàn thành trong ngày | Trạng thái |
+| Milestone | Khớp Epic | Due date | Issue con | Sprint chứa issue con |
 |---|---|---|---|---|
-| 2026-11-25 (Ngày 1 — bắt đầu) | 60.0 | 60 | — | Thực tế |
-| 2026-11-26 (Ngày 2) | 50.0 | 58 | `#9` (2 SWP — 1.2 đăng ký lịch hẹn) | Thực tế |
-| 2026-11-27 (Ngày 3) | 40.0 | 52 | `#8` (3 SWP), `#11` (3 SWP) | Thực tế |
-| 2026-11-28 (Ngày 4 — **hôm nay**) | 30.0 | 46 | `#14` (3 SWP), `#18` (3 SWP) | Thực tế |
-| 2026-11-29 (Ngày 5) | 20.0 | 46 | — (không issue nào về Done) | Dự kiến |
-| 2026-11-30 (Ngày 6) | 10.0 | 41 | `#23` (5 SWP — X.2 giao dịch nguyên tử, đang In Progress, dự kiến xong) | Dự kiến |
-| 2026-12-01 (Ngày 7 — kết thúc) | 0.0 | 35 | `#12` (3 SWP), `#16` (3 SWP) (2 issue In Progress còn lại, dự kiến xong) | Dự kiến |
+| `M1` SCR-D1-02 Nhập kiểm phẩm, nhập hàng | `#1` | 2026-12-08 | `#8`,`#9`,`#10` | S1: `#8`,`#9` · S2: `#10` |
+| `M2` SCR-D1-03 Cách ly và phán quyết | `#2` | 2026-12-01 | `#11` | S1: `#11` |
+| `M3` SCR-D4-01 Đặt hàng và phân bổ | `#3` | 2026-12-08 | `#12`,`#13` | S1: `#12` · S2: `#13` |
+| `M4` SCR-D4-03 Xếp hàng và kiểm chứng | `#4` | 2026-12-15 | `#14`,`#15` | S1: `#14` · S3: `#15` |
+| `M5` SCR-D4-05 Xác nhận giao hàng (POD) | `#5` | 2026-12-15 | `#16`,`#17` | S1: `#16` · S3: `#17` |
+| `M6` SCR-D5-01 Lập tuyến và công bố | `#6` | 2026-12-15 | `#18`,`#19`,`#20` | S1: `#18` · S2: `#20` · S3: `#19` |
+| `M7` FR-SCH-02 Giới hạn giờ lái xe | `#7` | 2026-12-15 | `#21` | S3: `#21` |
+| `M8` Nợ kỹ thuật & quyết định chờ duyệt xuyên epic | — (cross-epic) | 2026-12-15 | `#22`,`#23`,`#24` | S1: `#23` · S2: `#24` · S3: `#22` |
 
-**Cách tính cột Lý tưởng:** giảm đều **10 SWP/ngày** (60 SWP ÷ 6 khoảng cách giữa 7 ngày của
-Iteration), để đường lý tưởng về đúng **0** ở Ngày 7 — đúng định nghĩa một burndown lý tưởng
-("nếu không có gì trễ thì mọi việc xong đúng lúc sprint kết thúc"). (Bản nháp trước chia cho 7
-thay vì 6 khoảng, khiến Ngày 7 "kết thúc" còn lý tưởng 8.6 SWP chưa xong — tự mâu thuẫn với
-chính nhãn "kết thúc"; đã sửa lại ở đây.)
-
-**Vì sao thực tế lệch so với lý tưởng (chậm hơn, đường thực tế luôn nằm trên đường lý tưởng):**
-
-- Đến hôm nay (Ngày 4), thực tế còn **46 SWP** trong khi lý tưởng chỉ còn **30 SWP** — lệch
-  **16 SWP**, chủ yếu vì khối Todo gần như đóng băng: **8 trong 9 issue con đang Todo (33/35
-  SWP) bị chặn bởi câu hỏi (Q&A) hoặc quyết định (ADR) chưa có câu trả lời từ khách hoặc từ PL**,
-  không phải vì thiếu năng lực đội:
-  - `#21` (7.1 — Epic giờ lái xe `FR-SCH-02`, **8 SWP/32 giờ**, nặng nhất Todo): chặn cứng bởi
-    **`[CHỜ KHÁCH · Q&A No.10]`** — ngưỡng giờ lái xe RFP tự nhận là bản tóm tắt nguồn chính thức
-    (`公式ソース要約`) cần khách xác nhận lại, agent không được tự suy diễn số liệu luật lao động
-    (`task-breakdown.md` Phần 4). Đây cũng là lý do đường thực tế không hề nhích trong 2 ngày tới
-    (Ngày 5–6 ở trên): không có cách nào bắt đầu issue này trước khi có câu trả lời.
-  - `#22` (X.1 RBAC xuyên 6 màn, 8 SWP): chặn bởi `[CHỜ KHÁCH · Q&A No.33, No.34]` (ma trận phân
-    quyền + phân tách dữ liệu theo kho/khu vực).
-  - `#19` (6.2 nối dịch vụ bản đồ, 5 SWP) và `#17` (5.2 hàng đợi POD ngoại tuyến, 5 SWP): `#19`
-    chặn bởi `[CHỜ KHÁCH · Q&A No.7]` (chưa chọn nhà cung cấp bản đồ); `#17` chặn vì ADR dự kiến
-    cho hàng đợi ngoại tuyến **chưa được viết** (`02-adr/README.md`).
-  - `#15` (4.2 quét mã vạch, 2 SWP): chặn bởi `[CHỜ KHÁCH · Q&A No.19]` (thiết bị cầm tay chưa
-    chốt).
-  - `#10` (1.3 sửa/huỷ lịch hẹn, 2 SWP) và `#20` (6.3 lý do chưa gán tuyến, 2 SWP): cả hai thuộc
-    loại "cần thiết kế trước khi code" — chưa chốt layout mở rộng (`#10`) hoặc chưa rõ nguồn dữ
-    liệu lý do (`#20`), chưa có thiết kế để bắt đầu.
-  - `#24` (X.3, 1 SWP): phụ thuộc `ADR-0001` còn ở trạng thái `提案`, **khách hàng chưa phê duyệt**
-    — cố ý tách khỏi `#8` (đã code xong) để chỉ cần sửa riêng `#24` nếu khách chọn hướng khác.
-  - Chỉ `#13` (3.2 hiển thị đơn gần đây, 2 SWP) Todo **không** bị chặn bởi Q&A/ADR — đơn thuần
-    chưa đến lượt vì phụ thuộc dữ liệu đầu ra của `#12` (3.1, đang In Progress) để có nhật ký loại
-    trừ thật mà hiển thị.
-- Từ Ngày 6–7, đường thực tế mới giảm tiếp vì 3 issue đang **In Progress** (`#23`, `#12`, `#16`,
-  tổng 11 SWP) được dự kiến hoàn thành trước khi đóng Iteration — không có issue Todo nào dự kiến
-  bắt đầu được trong chính Iteration 1 này vì phụ thuộc bên ngoài chưa được gỡ.
-- Kết quả cuối Iteration 1 (dự kiến): còn **35 SWP Todo** y nguyên dồn sang Iteration 2 — đúng bằng
-  tổng SWP của 9 issue con Todo hiện tại, vì không issue Todo nào được gỡ chặn trong chính sprint
-  này.
+**Vì sao due date lệch nhau:** `M2` chỉ có 1 issue gọn trong Sprint 1 nên đóng sớm nhất
+(2026-12-01). `M1`/`M3` có 1 issue cần quyết định thiết kế thêm (không chờ khách) nên kéo sang
+Sprint 2, due 2026-12-08. `M4`/`M5`/`M6`/`M7`/`M8` đều có ít nhất một issue bị chặn bởi Q&A
+khách hoặc ADR chưa viết/chưa duyệt — đẩy xa nhất tới Sprint 3, due 2026-12-15 (hạn chót toàn
+dự án giả lập, không đẩy xa hơn được nữa).
 
 ---
 
-## 4. Rủi ro trễ
+## 2. Vì sao issue nằm ở sprint nào — nguyên tắc chia
 
-| Rủi ro | Issue | Ảnh hưởng tới mốc nào | Hành động | Ai làm, khi nào |
+Mỗi Milestone **không** dồn hết issue con vào Sprint 1 nữa; chia theo mức sẵn sàng thật của
+từng issue, cùng một nguyên tắc áp cho cả 8 Milestone:
+
+| Sprint | Tiêu chí xếp vào | Issue | Tổng SWP |
+|---|---|---|---|
+| **Sprint 1** (2026-11-25→12-01) | Đã có đủ thiết kế, không chờ ai — code được ngay, hoặc đang chạy thật | `#8`,`#9`,`#11`,`#12`,`#14`,`#16`,`#18`,`#23` | 25 |
+| **Sprint 2** (2026-12-02→12-08) | Cần một quyết định **nội bộ** (PL/thiết kế tự chốt được, không phải chờ khách) trước khi code | `#10`,`#13`,`#20`,`#24` | 7 |
+| **Sprint 3** (2026-12-09→12-15) | Chặn cứng bởi Q&A khách chưa trả lời, hoặc ADR dự kiến **chưa viết** | `#15`,`#17`,`#19`,`#21`,`#22` | 28 |
+| **Tổng** | | 17 issue | **60** (khớp `estimate.md` Phần 4) |
+
+Lý do xếp từng issue Sprint 2/3 — không phải chọn tuỳ ý:
+
+- **Sprint 2 (nội bộ tự chốt được):** `#10` (layout mở rộng sửa/huỷ lịch hẹn — PL/designer tự
+  vẽ thêm, không cần khách) · `#13` (chỉ chờ dữ liệu đầu ra thật của `#12`, cùng Milestone,
+  `#12` xong trong Sprint 1 nên `#13` làm được ngay đầu Sprint 2) · `#20` (chờ PL chọn mở rộng
+  bảng `allocation_block` hay bảng riêng — quyết định kỹ thuật nội bộ) · `#24` (chờ PL duyệt
+  nội bộ hướng A của `ADR-0001`, không phải chờ khách — xem `PREMISE.md` §2).
+- **Sprint 3 (chặn cứng bởi bên ngoài):** `#15` (`[CHỜ KHÁCH · Q&A No.19]` thiết bị quét mã) ·
+  `#17` (ADR hàng đợi POD ngoại tuyến **chưa viết**, xem `02-adr/README.md`) · `#19` (`[CHỜ
+  KHÁCH · Q&A No.7]` nhà cung cấp dịch vụ bản đồ) · `#21` (`[CHỜ KHÁCH · Q&A No.10]` ngưỡng giờ
+  lái xe, nặng nhất — 8 SWP) · `#22` (`[CHỜ KHÁCH · Q&A No.33, No.34]` RBAC + phân tách dữ
+  liệu, rộng nhất — chạm cả sáu màn).
+
+Epic (issue cha, SWP=0) được gán Iteration theo đúng sprint mà issue con **cuối cùng** của nó
+dự kiến xong, để Project hiện epic "đóng" đúng lúc: `#2`→S1 · `#1`,`#3`→S2 · `#4`,`#5`,`#6`,`#7`→S3.
+
+---
+
+## 3. Trạng thái hiện tại (đọc lại GitHub Project ngày 2026-11-26)
+
+"Hôm nay" trong kịch bản vẫn là **2026-11-28** (ngày thứ 4 của Sprint 1) — không đổi mốc thời
+gian giả lập, chỉ đổi cách chia issue vào Milestone/Sprint.
+
+| Trạng thái | Issue con/cross-epic (17) | SWP | Sprint |
+|---|---|---|---|
+| Done | `#8`,`#9`,`#11`,`#14`,`#18` | 14 | cả 5 đều ở Sprint 1 |
+| In Progress | `#12`,`#16`,`#23` | 11 | cả 3 đều ở Sprint 1 |
+| Todo | `#10`,`#13`,`#15`,`#17`,`#19`,`#20`,`#21`,`#22`,`#24` | 35 | 4 ở Sprint 2 (`#10`,`#13`,`#20`,`#24`), 5 ở Sprint 3 (`#15`,`#17`,`#19`,`#21`,`#22`) |
+
+**Điểm đáng chú ý — khớp ngay giữa trạng thái thật và sprint đã xếp, không phải gượng ép cho
+vừa:** toàn bộ 8 issue xếp vào Sprint 1 đều đang **Done hoặc In Progress** (không issue nào
+Todo trong Sprint 1); toàn bộ 9 issue Todo đều nằm ở Sprint 2/3 — đúng nguyên tắc "Sprint 1 chỉ
+chứa việc không chờ ai", xác nhận cách chia ở Phần 2 phản ánh đúng thực tế thay vì áp đặt
+ngược.
+
+---
+
+## 4. Burndown Sprint 1 (sprint đang chạy — 25 SWP, 8 issue)
+
+Chỉ tính 25 SWP của 8 issue **thuộc Sprint 1** (khác bản trước tính cả 60 SWP của toàn bộ
+backlog vào một sprint) — burndown giờ phản ánh đúng khối lượng **thật sự cam kết trong sprint
+này**, không pha trộn việc của Sprint 2/3.
+
+| Ngày | Lý tưởng (SWP còn lại) | Thực tế/dự kiến (SWP còn lại) | Issue hoàn thành trong ngày |
+|---|---|---|---|
+| 2026-11-25 (Ngày 1) | 25.0 | 25 | — |
+| 2026-11-26 (Ngày 2) | 20.8 | 23 | `#9` (2 SWP) |
+| 2026-11-27 (Ngày 3) | 16.7 | 17 | `#8` (3), `#11` (3) |
+| 2026-11-28 (Ngày 4 — **hôm nay**) | 12.5 | 11 | `#14` (3), `#18` (3) |
+| 2026-11-29 (Ngày 5) | 8.3 | 11 | — |
+| 2026-11-30 (Ngày 6) | 4.2 | 6 | `#23` (5, đang In Progress, dự kiến xong) |
+| 2026-12-01 (Ngày 7 — kết thúc Sprint 1) | 0.0 | 0 | `#12` (3), `#16` (3) (2 issue In Progress còn lại, dự kiến xong) |
+
+**Cách tính Lý tưởng:** 25 SWP ÷ 6 khoảng cách giữa 7 ngày ≈ 4.17 SWP/ngày, về đúng 0 ở Ngày 7.
+Thực tế lệch nhẹ (Ngày 4 còn 11 so với lý tưởng 12.5 — **nhanh hơn** lý tưởng, vì Sprint 1 chỉ
+chứa việc không bị chặn nên tiến độ đều hơn hẳn bản burndown cũ) và dự kiến về đúng 0 khi đóng
+sprint — khác hẳn bản cũ (còn tồn 35 SWP Todo dồn sang sprint sau do nhét lẫn việc bị chặn vào
+chung một sprint).
+
+---
+
+## 5. Sprint 2 & Sprint 3 — kế hoạch (chưa bắt đầu, lấy làm dự báo)
+
+| Sprint | SWP | Issue | Rủi ro chính |
+|---|---|---|---|
+| **Sprint 2** (2026-12-02→12-08) | 7 | `#10`,`#13`,`#20`,`#24` | Thấp — cả 4 issue chỉ chờ quyết định **nội bộ** (PL/thiết kế), không phụ thuộc khách trả lời. Rủi ro duy nhất: PL trì hoãn tự chốt `ADR-0001` (`#24`) hoặc thiết kế mở rộng (`#10`,`#20`) chậm hơn 1 sprint |
+| **Sprint 3** (2026-12-09→12-15) | 28 | `#15`,`#17`,`#19`,`#21`,`#22` | **Cao** — cả 5 issue đều chặn cứng bởi bên ngoài (4 Q&A khách chưa trả lời + 1 ADR chưa viết). Đây là sprint nặng nhất (28/60 SWP = 47% tổng backlog) vì cố ý dồn toàn bộ phần phụ thuộc ngoài vào cuối, để Sprint 1–2 không bị khối Todo-chờ-khách làm đóng băng tiến độ như bản kế hoạch cũ |
+
+---
+
+## 6. Rủi ro trễ
+
+| Rủi ro | Issue | Sprint/Milestone ảnh hưởng | Hành động | Ai làm, khi nào |
 |---|---|---|---|---|
-| Toàn bộ Epic giờ lái xe (8 SWP/32 giờ — nặng nhất trong Todo) chưa thể bắt đầu, chặn cứng bởi câu hỏi pháp lý chưa trả lời; RFP tự nhận ngưỡng giờ lái chỉ là bản tóm tắt cần kiểm lại nguồn chính thức | `#21` (7.1, Epic `#7` `FR-SCH-02`) | Nếu Q&A No.10 không có câu trả lời trước khi đóng Iteration 1 (2026-12-01), toàn bộ 8 SWP dồn sang Iteration 2, đẩy lùi mốc hoàn thành Epic 7 thêm ít nhất 1 sprint; rủi ro pháp lý nếu agent tự suy diễn ngưỡng giờ lái thay vì chờ khách xác nhận | PM (giả định) gửi lại Q&A No.10 cho khách hàng trước 2026-11-26, xin chốt hạn trả lời chậm nhất 2026-11-28 để BE (giả định) còn đủ 3 ngày cuối sprint code `#21` |
-| Quyết định phân quyền dữ liệu theo kho/khu vực chưa có câu trả lời, chặn issue dùng chung cả 6 màn cốt lõi — nếu trễ sẽ lan rủi ro ra toàn bộ backlog (không màn nào có RBAC thật trước go-live) | `#22` (X.1, cross-epic, 8 SWP — issue Todo lớn thứ nhì) | Mốc "6 màn cốt lõi sẵn sàng go-live" — thiếu RBAC thật nghĩa là mọi màn vẫn chạy với quyền giả định, không đạt Definition of Done của đề bài | PM (giả định) tổng hợp gộp Q&A No.33 + No.34 thành 1 gói câu hỏi ưu tiên cao, gửi khách trước 2026-11-26 song song với Q&A No.10 |
-| `ADR-0001` (hướng xử lý `保留` — số lượng tạm giữ) còn ở trạng thái `提案`, PL tạm chốt nhưng **khách hàng chưa phê duyệt**; nếu khách chọn hướng khác, phải sửa lại cả issue phụ thuộc lẫn dữ liệu đã sinh ở issue liên quan đã Done | `#24` (X.3, cross-epic, 1 SWP) liên quan `#8` (Done, 3 SWP) | Mốc review cuối Iteration 1 (2026-12-01) — nếu khách phản hồi sau mốc này và chọn hướng khác hướng A, phải mở lại một phần `#8` đã Done, phát sinh rework ngoài kế hoạch | PM (giả định) gửi ADR-0001 cho khách duyệt trước 2026-11-27; nếu chưa có phản hồi khi đóng Iteration, giữ nguyên giả định hướng A và ghi rõ vào `PREMISE.md` để không chặn tiến độ các issue khác |
+| Ngưỡng giờ lái xe pháp lý chưa xác nhận — RFP tự nhận chỉ là bản tóm tắt cần kiểm lại nguồn chính thức | `#21` (nặng nhất Sprint 3 — 8 SWP) | `M7`, Sprint 3, due 2026-12-15 | PM (giả định) gửi lại Q&A No.10 trước 2026-11-26, xin chốt hạn trả lời **chậm nhất đầu Sprint 3** (2026-12-09) để còn đủ thời gian code trong sprint | PM (giả định) |
+| Ma trận RBAC + phân tách dữ liệu kho/khu vực chưa có câu trả lời, chạm cả 6 màn cốt lõi | `#22` (rộng nhất Sprint 3 — 8 SWP) | `M8`, Sprint 3, due 2026-12-15 | Gộp Q&A No.33+No.34 thành 1 gói ưu tiên cao, gửi khách song song Q&A No.10, xin trả lời trước đầu Sprint 3 | PM (giả định) |
+| `ADR-0001` (hướng xử lý `保留`) PL tạm chốt, khách **chưa phê duyệt**; nếu khách chọn hướng khác phải sửa lại `#24` và một phần `#8` đã Done | `#24` (Sprint 2, 1 SWP) liên quan `#8` (Done, Sprint 1) | `M1`, `M8` | Gửi ADR-0001 cho khách duyệt trước khi đóng Sprint 1 (2026-12-01); nếu chưa có phản hồi khi vào Sprint 2, giữ giả định hướng A, PL tự chốt nội bộ để `#24` không bị đẩy tiếp sang Sprint 3 | PM (giả định) |
+| Dồn 47% tổng SWP (28/60) vào Sprint 3 vì toàn bộ phần chờ khách nằm ở đó — nếu **nhiều hơn 1** Q&A trễ cùng lúc, Sprint 3 vỡ kế hoạch toàn bộ, không còn sprint dự phòng (2026-12-15 là hạn chót giả lập) | `#15`,`#17`,`#19`,`#21`,`#22` | tất cả Milestone có issue ở Sprint 3 | Ưu tiên gửi cả 4 gói Q&A (No.7, No.10, No.19, No.33/34) ngay từ Sprint 1, không chờ tới Sprint 2 mới hỏi — giảm rủi ro cộng dồn | PM (giả định), bắt đầu ngay 2026-11-26 |
 
 ---
 
-**Căn cứ dữ liệu:** mọi số issue, Status, Point (SWP), Giờ ước lượng lấy trực tiếp từ
-`gh project item-list 1 --owner "@me" --format json --limit 50` đọc ngày 2026-11-25; lý do
-lệch kế hoạch và các mã Q&A/ADR lấy từ `estimate.md` và `task-breakdown.md` cùng repo. Phần 3
-(Ngày 5–7) và các dự kiến hoàn thành trong Phần 4 là suy luận hợp lý dựa trên trạng thái In
-Progress/Todo hiện tại, không phải số liệu lịch sử thật từ GitHub (Project không có dữ liệu
-ngày-qua-ngày thật cho một sprint giả lập).
+**Căn cứ dữ liệu:** 8 Milestone tạo thật qua `gh api repos/ngantt-1267/yuki-lab5-backlog/milestones`;
+toàn bộ 24 issue gán `--milestone` qua `gh issue edit` và field `Iteration` qua
+`gh project item-edit --iteration-id`, cả hai đã chạy thật và xác nhận exit code 0 cho từng
+issue (không phải mô tả suông). Trạng thái Status/Point(SWP)/Giờ giữ nguyên, lấy lại từ
+`gh project item-list 1 --owner "@me"` đọc ngày 2026-11-26 — không đổi so với `estimate.md`
+Phần 4 (vẫn 60 SWP/240 giờ, không issue nào đổi điểm). Phần 4 (Sprint 1) là dữ liệu đã có sẵn từ
+bản progress-report trước, chỉ tính lại Lý tưởng theo 25 SWP thay vì 60; Phần 5 (Sprint 2/3) là
+dự báo, chưa có dữ liệu ngày-qua-ngày thật (sprint chưa bắt đầu trong kịch bản giả lập).

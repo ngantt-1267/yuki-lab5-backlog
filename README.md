@@ -25,16 +25,22 @@ LAB-4 của dự án YUKI SYSTEM.
   sung, hướng đã chốt) để biết đúng chỗ nào khác LAB-4 và vì sao.
 - **Số epic:** **7** (`#1`–`#7`, label `epic`), cộng **17 issue con/cross-epic** (`#8`–`#24`) —
   tổng **24 issue** thật trên GitHub Project, nằm trong dải mục tiêu 20–35 đã chốt ở `plan.md`.
-- **Sprint giả lập đã chạy:** **Iteration 1**, **2026-11-25 → 2026-12-01** (7 ngày) — toàn bộ 24
-  issue đã gán vào Iteration này. Xem `progress-report.md` để biết trạng thái, burndown và rủi ro
-  trễ (chủ yếu do khối Todo bị chặn bởi Q&A/ADR chưa trả lời, không phải thiếu năng lực đội).
+- **Milestone & Sprint:** **8 Milestone** (khớp 7 Epic `#1`–`#7` + 1 nhóm cross-epic `M8`), mỗi
+  Milestone = một cụm chức năng, kéo dài xuyên nhiều **Sprint**. **3 Sprint** (Iteration 1/2/3,
+  mỗi sprint 7 ngày: 2026-11-25→12-01 · 12-02→12-08 · 12-09→12-15) dùng chung cho mọi Milestone —
+  mỗi sprint chỉ làm một phần của từng cụm chức năng, phần không bị chặn làm trước, phần chờ
+  khách/ADR đẩy ra sau. Toàn bộ 24 issue đã gán Milestone (`gh issue edit --milestone`) và Sprint
+  (field `Iteration`, `gh project item-edit --iteration-id`) thật trên Project. Xem
+  `progress-report.md` để biết chi tiết từng Milestone, trạng thái, burndown Sprint 1 và rủi ro
+  trễ (chủ yếu do khối Todo Sprint 3 bị chặn bởi Q&A/ADR chưa trả lời, không phải thiếu năng lực
+  đội).
 
 ## 2 · Link
 
 | Link | Mô tả | Xác minh ẩn danh |
 |---|---|---|
 | https://github.com/ngantt-1267/yuki-lab5-backlog | Repo LAB-5 (public) | Đã thử mở bằng request không kèm token xác thực (`curl` không set header `Authorization`) — **HTTP 200**, không cần đăng nhập |
-| https://github.com/users/ngantt-1267/projects/1 | GitHub Project #1 (public) — 7 epic, 17 issue con, field Status/Iteration | Đã xác nhận cùng cách — **HTTP 200**, không cần đăng nhập |
+| https://github.com/users/ngantt-1267/projects/1 | GitHub Project #1 (public) — 7 epic, 17 issue con, field Status/Milestone/Iteration (8 Milestone, 3 Sprint) | Đã xác nhận cùng cách — **HTTP 200**, không cần đăng nhập |
 | [`bao-cao-cham-swp/index.html`](bao-cao-cham-swp/index.html) | Báo cáo HTML chấm SWP đầy đủ 24 issue (ma trận Scope×Complexity, issue nào PL giữ nguyên/ghi đè) | File tĩnh trong repo này, mở thẳng bằng trình duyệt, không cần server |
 
 Repo LAB-4 nguồn (thiết kế gốc, **PRIVATE**): `https://github.com/ngantt-1267/yuki-lab2-prototype`
@@ -49,7 +55,7 @@ truy cập cho giảng viên chấm bài; người chấm cần quyền riêng n
 | `PREMISE.md` | Thay đổi/giả định LAB-5 tự thêm so với bản LAB-4 gốc (không lặp giả định đã có sẵn ở LAB-4) |
 | `task-breakdown.md` | Nguyên tắc chia task, cách dùng epic→issue→sub-issue trên GitHub Project, bảng Spec→Epic→Issue |
 | `estimate.md` | Ước lượng effort (SWP), ma trận Scope×Complexity, bảng tổng theo epic, so sánh với estimate LAB-1 |
-| `progress-report.md` | Báo cáo tiến độ Iteration 1 giả lập — tổng quan, trạng thái, burndown, rủi ro trễ |
+| `progress-report.md` | Báo cáo tiến độ giả lập — 8 Milestone × 3 Sprint, trạng thái, burndown Sprint 1, kế hoạch Sprint 2/3, rủi ro trễ |
 | `bao-cao-cham-swp/index.html` | Báo cáo HTML sinh bởi `skills/cham-swp/` — chấm điểm chi tiết toàn bộ 24 issue thật |
 | `skills/cham-swp/` | Skill chấm SWP tất định (Scope×Complexity→SWP, không gọi LLM) — mã nguồn + ví dụ issue dùng để sinh `estimate.md` và báo cáo HTML |
 
