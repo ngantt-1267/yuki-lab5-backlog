@@ -31,7 +31,10 @@ trùng công sức đã nằm ở issue con).
 <giá trị>`, nhưng phải tự `gh project item-edit --help`/`gh project field-create --help` xác minh
 tên cờ chính xác trước (không đoán), vì tài liệu CLI không ghi rõ field kiểu NUMBER dùng cờ nào.
 Việc ghi 24×2 field (Point, Giờ) rồi 24 lệnh gán Iteration được viết thành vòng lặp bash gọi `gh`
-tuần tự, có cơ chế chờ/thử lại khi gặp giới hạn tần suất API (xem mục 3).
+tuần tự; khi gặp giới hạn tần suất API phải dừng và chạy lại bằng tay nhiều lần — **không có
+script retry/backoff tự động nào được lưu lại trong repo này** (`skills/cham-swp/
+ghi-len-github-project.js` chỉ gọi `gh` một lần và `throw` ngay khi lệnh thất bại, không tự chờ
+hay thử lại) (xem mục 3).
 
 **Viết báo cáo tiến độ (Phase 6):** 1 agent đọc trực tiếp dữ liệu thật trên Project qua
 `gh project item-list --format json` (không dùng số tóm tắt người điều phối đưa sẵn, tự đọc lại
@@ -83,12 +86,17 @@ vòng cho từng màn):
 **Chỗ chưa tốt, cần cải thiện nếu làm thật ngoài khoá học:**
 - Giới hạn tần suất API GitHub (rate limit, gồm cả giới hạn phụ không hiện rõ trong hạn mức
   `/rate_limit` chính thức) là rủi ro không lường hết từ đầu — tốn thời gian thật đáng kể để retry
-  bằng tay, dù đã có cơ chế chờ/thử lại tự động.
+  **bằng tay, chạy lại từng lệnh `gh` một**; kiểm lại repo này xác nhận **không có script
+  retry/backoff tự động nào được lưu lại** (xem `skills/cham-swp/ghi-len-github-project.js`) —
+  nếu làm thật ngoài khoá học, đây là chỗ nên viết script retry có giới hạn số lần thử thay vì lặp
+  lại thao tác tay.
 - Một agent con từng rơi vào vòng chờ không tiến triển, tự sinh nhiều thông báo lặp lại ("đang
   chờ", "chưa cần hành động") mà không thật sự tiến thêm — phải chủ động dừng agent đó (`TaskStop`)
-  và người điều phối tự tiếp quản hoàn tất phần việc còn lại bằng tay (script retry có giới hạn số
-  lần thử, không lặp vô hạn). Đây là bài học về giám sát agent chạy nền: không nên để một agent tự
-  "chờ" một điều kiện bên ngoài (rate limit hồi phục) mà không có giới hạn thời gian/số lần rõ ràng.
+  và người điều phối tự tiếp quản hoàn tất phần việc còn lại bằng tay, chạy lại lệnh `gh` thủ công
+  từng lần một. Đây là bài học về giám sát agent chạy nền: không nên để một agent tự "chờ" một
+  điều kiện bên ngoài (rate limit hồi phục) mà không có giới hạn thời gian/số lần rõ ràng, và nên
+  viết sẵn một script retry có giới hạn số lần thử thay vì để người điều phối gánh việc đó bằng
+  tay.
 - Nhiều quyết định nhỏ (độ hạt issue, cách quy SWP ra giờ, gộp/tách một vài issue biên) được agent
   tự quyết theo mặc định hợp lý (có agent cố vấn xác nhận các điểm này không thật sự chặn PL) thay
   vì PL duyệt từng điểm trước khi làm — đổi lấy tốc độ, nhưng PL chỉ xem lại các quyết định này ở

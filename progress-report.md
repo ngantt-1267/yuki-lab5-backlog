@@ -48,17 +48,23 @@ dùng bảng thay thế theo đúng cho phép của đề bài. Đơn vị: SWP 
 | Ngày | Lý tưởng (SWP còn lại) | Thực tế/dự kiến (SWP còn lại) | Issue hoàn thành trong ngày | Trạng thái |
 |---|---|---|---|---|
 | 2026-11-25 (Ngày 1 — bắt đầu) | 60.0 | 60 | — | Thực tế |
-| 2026-11-26 (Ngày 2) | 51.4 | 58 | `#9` (2 SWP — 1.2 đăng ký lịch hẹn) | Thực tế |
-| 2026-11-27 (Ngày 3) | 42.9 | 52 | `#8` (3 SWP), `#11` (3 SWP) | Thực tế |
-| 2026-11-28 (Ngày 4 — **hôm nay**) | 34.3 | 46 | `#14` (3 SWP), `#18` (3 SWP) | Thực tế |
-| 2026-11-29 (Ngày 5) | 25.7 | 46 | — (không issue nào về Done) | Dự kiến |
-| 2026-11-30 (Ngày 6) | 17.1 | 41 | `#23` (5 SWP — X.2 giao dịch nguyên tử, đang In Progress, dự kiến xong) | Dự kiến |
-| 2026-12-01 (Ngày 7 — kết thúc) | 8.6 | 35 | `#12` (3 SWP), `#16` (3 SWP) (2 issue In Progress còn lại, dự kiến xong) | Dự kiến |
+| 2026-11-26 (Ngày 2) | 50.0 | 58 | `#9` (2 SWP — 1.2 đăng ký lịch hẹn) | Thực tế |
+| 2026-11-27 (Ngày 3) | 40.0 | 52 | `#8` (3 SWP), `#11` (3 SWP) | Thực tế |
+| 2026-11-28 (Ngày 4 — **hôm nay**) | 30.0 | 46 | `#14` (3 SWP), `#18` (3 SWP) | Thực tế |
+| 2026-11-29 (Ngày 5) | 20.0 | 46 | — (không issue nào về Done) | Dự kiến |
+| 2026-11-30 (Ngày 6) | 10.0 | 41 | `#23` (5 SWP — X.2 giao dịch nguyên tử, đang In Progress, dự kiến xong) | Dự kiến |
+| 2026-12-01 (Ngày 7 — kết thúc) | 0.0 | 35 | `#12` (3 SWP), `#16` (3 SWP) (2 issue In Progress còn lại, dự kiến xong) | Dự kiến |
+
+**Cách tính cột Lý tưởng:** giảm đều **10 SWP/ngày** (60 SWP ÷ 6 khoảng cách giữa 7 ngày của
+Iteration), để đường lý tưởng về đúng **0** ở Ngày 7 — đúng định nghĩa một burndown lý tưởng
+("nếu không có gì trễ thì mọi việc xong đúng lúc sprint kết thúc"). (Bản nháp trước chia cho 7
+thay vì 6 khoảng, khiến Ngày 7 "kết thúc" còn lý tưởng 8.6 SWP chưa xong — tự mâu thuẫn với
+chính nhãn "kết thúc"; đã sửa lại ở đây.)
 
 **Vì sao thực tế lệch so với lý tưởng (chậm hơn, đường thực tế luôn nằm trên đường lý tưởng):**
 
-- Đến hôm nay (Ngày 4), thực tế còn **46 SWP** trong khi lý tưởng chỉ còn **34.3 SWP** — lệch
-  **11.7 SWP**, chủ yếu vì khối Todo gần như đóng băng: **8 trong 9 issue con đang Todo (33/35
+- Đến hôm nay (Ngày 4), thực tế còn **46 SWP** trong khi lý tưởng chỉ còn **30 SWP** — lệch
+  **16 SWP**, chủ yếu vì khối Todo gần như đóng băng: **8 trong 9 issue con đang Todo (33/35
   SWP) bị chặn bởi câu hỏi (Q&A) hoặc quyết định (ADR) chưa có câu trả lời từ khách hoặc từ PL**,
   không phải vì thiếu năng lực đội:
   - `#21` (7.1 — Epic giờ lái xe `FR-SCH-02`, **8 SWP/32 giờ**, nặng nhất Todo): chặn cứng bởi
