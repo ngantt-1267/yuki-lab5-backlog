@@ -17,6 +17,15 @@
 >   issue gán `--milestone` + field `Iteration` bằng `gh project item-edit --iteration-id`
 >   (đọc lại bằng `gh project item-list 1 --owner "@me"` ngày 2026-11-26 để xác nhận đã ghi
 >   đúng, không suy đoán).
+> - **Vì sao vẫn 3 Sprint, không nhiều/ít hơn:** đã kiểm cả đề bài LAB-5 lẫn LAB-1
+>   (`Effort Estimation.xlsx`) — không nơi nào chốt sẵn số dev/QA (LAB-1 tự ghi rõ ở mục
+>   "Overall Assumptions": lịch trình và bố trí nhân sự nằm ngoài phạm vi ước lượng, hẹn ở file
+>   `05_Resource plan` không có trong bộ deliverable). PL tự chọn **đội giả định 4 dev + 2 QA**
+>   (ghi rõ ở `PREMISE.md` Phần 2 và `README.md`). Với đội này, năng lực dev = 4×5×7 = **140
+>   giờ/tuần** — dư sức xong 240 giờ backlog còn lại (60 SWP) trong **chưa tới 2 sprint** nếu
+>   không có gì chặn. Số 3 Sprint giữ nguyên **không phải vì thiếu năng lực đội**, mà vì 28/60
+>   SWP (toàn bộ nhóm Sprint 3) bị chặn cứng bởi Q&A khách/ADR chưa viết — độ trễ nằm ở **lịch
+>   trình chờ khách trả lời**, tăng cỡ đội không rút ngắn được khoảng chờ đó.
 
 ---
 
