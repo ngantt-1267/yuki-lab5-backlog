@@ -34,12 +34,13 @@ LAB-4 của dự án YUKI SYSTEM.
   `progress-report.md` để biết chi tiết từng Milestone, trạng thái, burndown Sprint 1 và rủi ro
   trễ (chủ yếu do khối Todo Sprint 3 bị chặn bởi Q&A/ADR chưa trả lời, không phải thiếu năng lực
   đội).
-- **Đội hình giả định: 4 dev + 2 QA** — đề bài LAB-5 và `plan.md` **không chốt sẵn** số dev/QA;
+- **Đội hình giả định: 3 dev + 1.5 QA** — đề bài LAB-5 và `plan.md` **không chốt sẵn** số dev/QA;
   LAB-1 (`Effort Estimation.xlsx`) cũng cố ý không cho (`3-1. Overall Assumptions`: lịch trình +
   bố trí nhân sự "nằm ngoài phạm vi ước lượng này", hẹn ở file `05_Resource plan` không tồn tại
-  trong bộ deliverable). PL tự chọn 4 dev + 2 QA — năng lực đủ xong 240 giờ backlog còn lại
-  trong chưa tới 2 sprint nếu không có gì chặn; giữ 3 Sprint là vì chờ Q&A khách/ADR, không phải
-  do thiếu người. Chi tiết tính toán: `PREMISE.md` Phần 2.
+  trong bộ deliverable). PL tự chọn 3 dev + 1.5 QA sau khi cân vài phương án (4 dev+2 QA dư quá
+  nhiều; 3 dev+1 QA thì QA quá tải ở Sprint 1 và Sprint 3) — năng lực dev/QA đều đủ cho cả 3
+  Sprint, chỉ Sprint 3 vượt nhẹ dev ~7 giờ (không đáng kể). Giữ 3 Sprint, không cần thêm. Chi
+  tiết tính toán: `PREMISE.md` Phần 2.
 
 ## 2 · Link
 
