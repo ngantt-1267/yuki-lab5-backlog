@@ -10,16 +10,16 @@ LAB-4 của dự án YUKI SYSTEM.
 
 ## 1 · Tổng quan
 
-- **Phá backlog từ bản LAB-4 nào:** bản thiết kế LAB-4 ở repo `yuki-lab2-prototype`, tính tới
-  ngày review nội dung cuối cùng **2026-11-21** (commit `537084c` — sửa ADR-0001 thêm song ngữ
-  thuật ngữ và trích dẫn tiếng Nhật, lần sửa nội dung markdown cuối cùng; đối chiếu lại bằng
-  `git log --name-only` xác nhận mọi commit **sau** `537084c` tới nay chỉ đồng bộ/định dạng file
-  Excel/Word nhị phân — `2b8c116`, `3d54d06`, `ed5ee3d`, `da6e030` — không sửa nội dung markdown
-  nào) — **(tạm tính theo ngày review nội dung cuối cùng — PL xác nhận lại ngày nộp chính thức nếu
-  khác)**.
-- **Phạm vi:** 6 màn cốt lõi LAB-4 (`SCR-D1-02`, `SCR-D1-03`, `SCR-D4-01`, `SCR-D4-03`,
-  `SCR-D4-05`, `SCR-D5-01`) + 1 ràng buộc kiến trúc đứng riêng (`FR-SCH-02` — giới hạn giờ lái
-  xe) = **7 epic**.
+- **Phá backlog từ bản LAB-4 nào:** bản thiết kế LAB-4 ở repo `yuki-lab2-prototype` (private).
+  Link: https://github.com/ngantt-1267/yuki-lab2-prototype
+- **Phạm vi:** 6 màn cốt lõi LAB-4 + 1 ràng buộc kiến trúc đứng riêng = **7 epic**:
+  - `SCR-D1-02` 入荷検品・受入登録 — Nhập kiểm phẩm, nhập hàng
+  - `SCR-D1-03` 隔離品一覧・処分判定 — Cách ly và phán quyết
+  - `SCR-D4-01` 受注登録・引当 — Đặt hàng và phân bổ
+  - `SCR-D4-03` ピッキング・積込検証 — Xếp hàng và kiểm chứng
+  - `SCR-D4-05` 配送確認（POD）— Xác nhận giao hàng
+  - `SCR-D5-01` ルート計画・公開 — Lập tuyến và công bố
+  - `FR-SCH-02` — Giới hạn giờ lái xe (ràng buộc kiến trúc, không phải một màn)
 - **`PREMISE.md`:** backlog LAB-5 **có** phát sinh thay đổi/giả định thêm so với bản LAB-4 gốc —
   không phải "giữ nguyên không đổi". Xem `PREMISE.md` (3 phần: spec thêm/bỏ/sửa, giả định bổ
   sung, hướng đã chốt) để biết đúng chỗ nào khác LAB-4 và vì sao.
@@ -34,13 +34,9 @@ LAB-4 của dự án YUKI SYSTEM.
   `progress-report.md` để biết chi tiết từng Milestone, trạng thái, burndown Sprint 1 và rủi ro
   trễ (chủ yếu do khối Todo Sprint 3 bị chặn bởi Q&A/ADR chưa trả lời, không phải thiếu năng lực
   đội).
-- **Đội hình giả định: 3 dev + 1.5 QA** — đề bài LAB-5 và `plan.md` **không chốt sẵn** số dev/QA;
-  LAB-1 (`Effort Estimation.xlsx`) cũng cố ý không cho (`3-1. Overall Assumptions`: lịch trình +
-  bố trí nhân sự "nằm ngoài phạm vi ước lượng này", hẹn ở file `05_Resource plan` không tồn tại
-  trong bộ deliverable). PL tự chọn 3 dev + 1.5 QA sau khi cân vài phương án (4 dev+2 QA dư quá
-  nhiều; 3 dev+1 QA thì QA quá tải ở Sprint 1 và Sprint 3) — năng lực dev/QA đều đủ cho cả 3
-  Sprint, chỉ Sprint 3 vượt nhẹ dev ~7 giờ (không đáng kể). Giữ 3 Sprint, không cần thêm. Chi
-  tiết tính toán: `PREMISE.md` Phần 2.
+- **Đội hình giả định:** 3 dev + 1.5 QA — PL tự chọn sau khi cân vài phương án (4 dev+2 QA dư
+  quá nhiều; 3 dev+1 QA thì QA quá tải ở Sprint 1 và Sprint 3) — năng lực dev/QA đều đủ cho cả 3
+  Sprint, chỉ Sprint 3 vượt nhẹ dev ~7 giờ (không đáng kể). Chi tiết: `PREMISE.md` Phần 2.
 
 ## 2 · Link
 
